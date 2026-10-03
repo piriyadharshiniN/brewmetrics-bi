@@ -1,6 +1,23 @@
 table Dim_City
 	lineageTag: 55c94025-5ede-41b0-b830-63212c133eb3
 
+	measure 'Item Sales Rank' =
+			
+			RANKX (
+			    ALL ( 'Dim_Product'[Item] ),
+			    [Total Sales],
+			    ,
+			    DESC
+			)
+		formatString: 0
+		lineageTag: c64e3cab-1840-4914-85fd-8f15b4aef566
+
+	measure 'Average Sale Value' =
+			
+			AVERAGE ( Fact_Sales[sales_amount] )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 24d59f44-bc2a-4732-8463-1a8e70f46ff5
+
 	column City
 		dataType: string
 		lineageTag: 192374e9-dc05-4356-b001-71c8984b56bc
