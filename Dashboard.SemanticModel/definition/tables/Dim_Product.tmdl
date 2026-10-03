@@ -1,0 +1,56 @@
+table Dim_Product
+	lineageTag: 2dd869bd-7005-4735-be73-dbf1fed8e8d3
+
+	column Category
+		dataType: string
+		lineageTag: 7a1173e0-3c94-4e1a-8901-4adf36ee01f7
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Store_Format
+		dataType: string
+		lineageTag: 61dbb3b6-6920-4db5-9486-a562a7f66c38
+		summarizeBy: none
+		sourceColumn: Store_Format
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: ed95f93a-7c1d-4013-9a9d-b955fdae877c
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Key
+		dataType: string
+		lineageTag: 5c6859a7-e1d9-4509-b395-825e84e1bfa9
+		summarizeBy: none
+		sourceColumn: Product_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Product = m
+		mode: import
+		source =
+				let
+				    Source = Fact_Sales,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"category", "store_format", "item"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"category", "Category"}, {"store_format", "Store_format"}, {"item", "Item"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Product_Key", each [Category] & "|" & [Item] & "|" & [Store_Format]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"Product_Key"}),
+				    #"Added Custom1" = Table.AddColumn(#"Removed Columns", "Product_Key", each [Category] & "|" & [Item] & "|" & [Store_Format]),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Custom1",{{"Store_format", "Store_Format"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns1",{"Product_Key"}),
+				    #"Added Custom2" = Table.AddColumn(#"Removed Columns1", "Product_Key", each [Category] & "|" & [Item] & "|" & [Store_Format])
+				in
+				    #"Added Custom2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
