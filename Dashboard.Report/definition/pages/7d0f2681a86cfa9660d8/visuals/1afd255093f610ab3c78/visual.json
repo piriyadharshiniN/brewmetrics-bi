@@ -70,6 +70,40 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "dropShadow": [
         {
@@ -132,37 +166,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e98ff755b2327e786f11",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Dim_Product"
-              }
-            },
-            "Property": "Item"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e16134d6e41dabf44b70",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Sales"
-              }
-            },
-            "Property": "Total Sales"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

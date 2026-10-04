@@ -70,6 +70,40 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "dropShadow": [
         {
@@ -143,7 +177,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "23bbafc3012cb0505d6c",
+        "name": "77209537d775a853e532",
         "field": {
           "Column": {
             "Expression": {
@@ -157,7 +191,7 @@
         "type": "Categorical"
       },
       {
-        "name": "7fd6e3e8c186dab53eea",
+        "name": "78e4cd46f9797b69a65c",
         "field": {
           "Measure": {
             "Expression": {
@@ -169,6 +203,41 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "e910cf2fc358acd65f3d",
+        "field": {
+          "Arithmetic": {
+            "Left": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Fact_Sales"
+                  }
+                },
+                "Property": "Total Sales"
+              }
+            },
+            "Right": {
+              "ScopedEval": {
+                "Expression": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Fact_Sales"
+                      }
+                    },
+                    "Property": "Total Sales"
+                  }
+                },
+                "Scope": []
+              }
+            },
+            "Operator": 3
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
       }
     ]
   }

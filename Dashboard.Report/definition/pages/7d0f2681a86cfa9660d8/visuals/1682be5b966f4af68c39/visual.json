@@ -38,6 +38,22 @@
         {
           "properties": {}
         }
+      ],
+      "shapeCustomRectangle": [
+        {
+          "properties": {
+            "tileShape": {
+              "expr": {
+                "Literal": {
+                  "Value": "'tabCutTopCornersByPixel'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -176,7 +192,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "02d72f43aa0dc348e09f",
+        "name": "bf6a130bbe9683b912b4",
         "field": {
           "Column": {
             "Expression": {
